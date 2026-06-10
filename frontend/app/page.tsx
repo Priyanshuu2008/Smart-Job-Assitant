@@ -46,7 +46,7 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const res = await fetch("http://127.0.0.1:8000/extract-pdf", { method: "POST", body: formData });
+      const res = await fetch("https://smart-job-assitant.up.railway.app/extract-pdf", { method: "POST", body: formData });
       const data = await res.json();
       setResume(data.text);
     } catch { setError("PDF extract failed"); }
@@ -55,7 +55,7 @@ export default function Home() {
   const analyze = async () => {
     setLoading(true); setError(""); setResult(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/analyze", {
+      const res = await fetch("https://smart-job-assitant.up.railway.app/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ resume, job_description: jobDescription }),
@@ -71,7 +71,7 @@ export default function Home() {
   const researchCompany = async () => {
     setCompanyLoading(true); setCompanyResult(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/research/company", {
+      const res = await fetch("https://smart-job-assitant.up.railway.app/research/company", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ company_name: companyName }),
@@ -83,7 +83,7 @@ export default function Home() {
   const researchJobRole = async () => {
     setJobRoleLoading(true); setJobRoleResult(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/research/job-role", {
+      const res = await fetch("https://smart-job-assitant.up.railway.app/research/job-role", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_title: jobTitle, company_name: jobCompany }),
